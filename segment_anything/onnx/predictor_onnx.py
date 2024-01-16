@@ -10,7 +10,7 @@ import cv2
 import onnxruntime
 from typing import Optional, Tuple
 
-from ..utils.transforms import ResizeLongestSide
+from segment_anything.utils.transforms import ResizeLongestSide
 
 
 class SamPredictorONNX:

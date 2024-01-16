@@ -56,7 +56,7 @@ def predict_and_save(img, crop_size, output_path, img_id, image_format):
 
     sorted_anns = sorted(masks2, key=(lambda x: x['area']), reverse=True)
     # Use the original image shape for creating the mask
-    img = np.empty((shape[0], shape[1], 4), dtype=np.float32)
+    img = np.empty((shape[0], shape[1], 4), dtype=np.uint8)
     img[:, :, 3] = 0
 
     for i, ann in enumerate(tqdm(sorted_anns)):
@@ -71,7 +71,7 @@ def predict_and_save(img, crop_size, output_path, img_id, image_format):
             img_for_jpg = (img[:, :, 0:3] * 255).astype(np.uint8)
             save_jpg_path = os.path.join(output_path, f'{img_id}.jpg')
             plt.imsave(save_jpg_path.format(i+1), img_for_jpg)
-        img = np.empty((shape[0], shape[1], 4), dtype=np.float32)
+        img = np.empty((shape[0], shape[1], 4), dtype=np.uint8)
         img[:, :, 3] = 0
 
     # Save the last batch if needed
